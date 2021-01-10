@@ -27,6 +27,8 @@ config = tf.ConfigProto()
 config.gpu_options.allow_growth = True
 
 BATCH_SIZE = TFR_process.BATCH_SIZE
+IMAGE_HEIGHT = TFR_process.IMAGE_HEIGHT
+IMAGE_WIDTH = TFR_process.IMAGE_WIDTH
 # IMAGE_SIZE = 64
 # IMAGE_CHANNEL = 3
 EPOCH = 60
@@ -44,7 +46,7 @@ def dcgan(learning_rate=0.0002,
           beat1=0.5, z_dim=100,
           c_dim=3, batch_size=BATCH_SIZE,
           gf_dim=64, df_dim=64,
-          input_height=48, input_width=48):
+          input_height=IMAGE_HEIGHT, input_width=IMAGE_WIDTH):
     end_points = {}
 
     # batch_size, df_dim=64

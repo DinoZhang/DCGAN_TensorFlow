@@ -13,8 +13,10 @@ import numpy as np
 
 np.set_printoptions(threshold=np.inf)
 config = tf.ConfigProto()
+#config=tf.compat.v1.ConfigProto()
 config.gpu_options.allow_growth = True
 sess = tf.Session(config=config)
+#sess=tf.compat.v1.Session(config=config)
 
 # 读取数据文件的轮数
 NUM_EPOCHS = None  # 不限制，否则会报out_of_range_error
@@ -24,7 +26,7 @@ IMAGE_HEIGHT = 48
 IMAGE_WIDTH = IMAGE_HEIGHT
 IMAGE_DEPTH = 3
 # 训练batch尺寸
-BATCH_SIZE = 64
+BATCH_SIZE = 1
 # 定义每个TFR文件中放入多少条数据
 INSTANCES_PER_SHARD = 10000
 # 图片文件存放路径
@@ -95,6 +97,7 @@ def image_to_tfr(image_and_label=IMAGE_LABEL_LIST,
         print('正在生成文件: ', file_name)
         # 书写器初始化
         writer = tf.python_io.TFRecordWriter(file_name)
+        #writer = tf.compat.v1.python_io.TFRecordWriter(file_name)
         for index, image_path in enumerate(
                 image_paths[file_i * INSTANCES_PER_SHARD:(file_i + 1) * INSTANCES_PER_SHARD]):
             image_data = imread(os.path.join(image_path))

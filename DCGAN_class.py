@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Author : hellcat
 # Time   : 18-1-21
 
